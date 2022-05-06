@@ -1,4 +1,4 @@
-%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN EOL
+%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN EOL PT_VIRG
 
 %left PLUS MOINS
 %left FOIS
@@ -9,7 +9,7 @@
 %%
 main:
 
-    expression EOL {}
+    expression PT_VIRG {}
 ;
 expression:
       expression PLUS expression {}
