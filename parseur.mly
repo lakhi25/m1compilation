@@ -1,33 +1,27 @@
+
 %token <int> NOMBRE
-%token  PLUS MOINS FOIS GPAREN DPAREN EOL
+%token PLUS MOINS FOIS MODU GPAREN DPAREN PT_VIRG EOL
 
 %left PLUS MOINS
-%left FOIS
+%left FOIS MODU
 %nonassoc UMOINS
-/**non terminaux aussi vont creer des tokens contenant des entiers*/
+/**non terminaux*/
 %type <int> main expression
 %start main
 %%
-/* $1...Les actions, ici,sont de type entier
-, c’est l’entier que l’on va mettre dans le token créé.*/
 main:
-
-    expression EOL { $1 }
+    expression PT_VIRG  { $1 }
 ;
 expression:
       expression PLUS expression { $1+$3 }
     | expression MOINS expression { $1-$3 }
     | expression FOIS expression { $1*$3 }
+    | expression MODU expression { $1 mod $3 }
+    
     | GPAREN expression DPAREN { $2 }
     | MOINS expression %prec UMOINS { -$2 }
     | NOMBRE { $1 }
 ;
-
-
-
-
-
-
 
 
 
