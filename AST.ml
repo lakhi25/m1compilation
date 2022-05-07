@@ -4,6 +4,8 @@ type expression_a =
 | Moins of expression_a * expression_a
 | Mult  of expression_a * expression_a
 | Modulo of expression_a * expression_a
+| Ou of expression_a * expression_a
+| Et of expression_a * expression_a
 | Equals of expression_a * expression_a
 | Greqnb of expression_a * expression_a
 | Grstnb of expression_a * expression_a
@@ -23,10 +25,12 @@ type expression_a =
 let rec print_binaire form s g d = Format.fprintf form "@[<2>%s%s@ %a%s@ %a%s@]" s "(" print_AST g " ," print_AST d " )" 
 
 and print_AST form = let open Format in function
-| Plus  (g,d) -> print_binaire form "Plus" g d
-| Moins (g,d) -> print_binaire form "Moins" g d
-| Mult  (g,d) -> print_binaire form "Mult" g d
+| Plus    (g,d) -> print_binaire form "Plus" g d
+| Moins   (g,d) -> print_binaire form "Moins" g d
+| Mult    (g,d) -> print_binaire form "Mult" g d
 | Modulo  (g,d) -> print_binaire form "Modulo" g d
+| Ou      (g,d) -> print_binaire form "Ou" g d
+| Et      (g,d) -> print_binaire form "Et" g d
 | Equals  (g,d) -> print_binaire form "Equals" g d
 | Greqnb  (g,d) -> print_binaire form "Greqnb" g d
 | Grstnb  (g,d) -> print_binaire form "Grstnb" g d

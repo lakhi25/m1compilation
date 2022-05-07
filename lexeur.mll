@@ -22,6 +22,8 @@ rule token = parse
     | "<" { LOSTNB }
     | ">" { GRSTNB }
     | ">=" { GREQNB }
+    | "&&" { ET }
+    | "||" { OU }
     | '(' { GPAREN }
     | ')' { DPAREN }
     | eof { raise Eof }
