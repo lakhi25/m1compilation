@@ -1,43 +1,26 @@
-%token NOMBRE PLUS MOINS FOIS GPAREN DPAREN EOL
+%{
+  open AST
+%}
+/*float in js pour toutes les nombres int et meme flottante  */
+%token <int> NOMBRE
+%token PLUS MOINS FOIS MODULO GPAREN DPAREN PT_VIRG EOL
 
 %left PLUS MOINS
-%left FOIS
+%left FOIS MODULO
 %nonassoc UMOINS
 /**non terminaux*/
-%type <unit> main expression
+%type <AST.expression_a> main expression
 %start main
 %%
 main:
-
-    expression EOL {}
+    expression PT_VIRG EOL {$1}
 ;
 expression:
-      expression PLUS expression {}
-    | expression MOINS expression {}
-    | expression FOIS expression {}
-    | GPAREN expression DPAREN {}
-    | MOINS expression %prec UMOINS {}
-    | NOMBRE {}
+      expression PLUS expression {Plus ($1,$3)}
+    | expression MOINS expression {Moins($1,$3)}
+    | expression FOIS expression {Mult($1,$3)}
+    /*| expression MODULO expression {Modulo($1,$3)}*/
+    | GPAREN expression DPAREN {$2}
+    | MOINS expression %prec UMOINS {Neg $2}
+    | NOMBRE {Num $1}
 ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

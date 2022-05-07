@@ -2,7 +2,7 @@
 # make : to build the project
 # make clean :  to clean the generated files
 
-SOURCES = lexeur.mll parseur.mly main.ml
+SOURCES = AST.ml lexeur.mll parseur.mly main.ml
 EXEC = main
 
 CAMLLEX = ocamllex
@@ -39,7 +39,7 @@ $(EXEC): $(OBJS)
 .mly.cmo:
 	$(CAMLYACC) $<
 	$(CAMLC) -c $*.mli
-	$(CAMLC) -c lexeur.ml parseur.ml main.ml
+	$(CAMLC) -c AST.ml lexeur.ml parseur.ml main.ml
 
 .mly.cmx:
 	$(CAMLYACC) $<
