@@ -7,11 +7,22 @@
 rule token = parse
     [' ' '\t' '\n'] { token lexbuf }
     | ';' { PT_VIRG }
+    | "True"   { BOOLEEN(true) }
+    | "False"   { BOOLEEN(false) }
     | ['0'-'9' ]+(['.'] ['0'-'9'])?  as lexem { NOMBRE(int_of_string lexem) }
     | '+' { PLUS }
     | '-' { MOINS }
     | '*' { FOIS }
-    | '%' { MODU }
+    | '%' { MODULO }
+    | "==" { EQUAL }
+    | "<=" { LOEQNB }
+    | "!=" { NOTEQL }
+    | '!'  { NOT }
+    | "<" { LOSTNB }
+    | ">" { GRSTNB }
+    | ">=" { GREQNB }
+    | "&&" { ET }
+    | "||" { OU }
     | '(' { GPAREN }
     | ')' { DPAREN }
     | eof { raise Eof }
