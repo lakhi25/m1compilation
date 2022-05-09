@@ -2,6 +2,8 @@
     open Parseur
     exception Eof
     exception TokenInconu
+
+
 }
 rule token = parse
     [' ' '\t'] { token lexbuf }
@@ -12,6 +14,7 @@ rule token = parse
     |'/''*'[^'*']*"*/"'\n' { token lexbuf }
     | ['\n'] { EOL } 
     | ';' {PT_VIRG}
+    ['a'-'z' 'A'-'Z'] (['a'-'z' 'A'-'Z'] | ['0'-'9'] | "_")*  as lexem { IDENT(lexem) }
     | ['0'-'9' ]+(['.'] ['0'-'9'])? + (['e''E']['-''+']?['0'-'9']+)? as lexem { NOMBRE (float_of_string lexem)}
     | "True"   { BOOLEEN(true) }
     | "False"   { BOOLEEN(false) }
@@ -31,10 +34,14 @@ rule token = parse
     | ">="   { GREQNB }
     | "&&"   { ET }
     | "||"   { OU }
-    (* | "If"{ IF }
+    | "If"   { IF }
     | "Else" { ELSE }
+    | "Loop" { LOOP }
     | "While"{ WHILE }
-    | "Do"   { Do } *)
+    | "For" { FOR}
+    | "Do"   { Do }
+    | "Funct" { FUNCT }
+    | "="    { ASSIGN }
     | '('    { GPAREN }
     | ')'    { DPAREN }
     | eof    { raise Eof }

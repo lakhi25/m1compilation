@@ -44,3 +44,6 @@ and print_AST form = let open Format in function
 
 ;; 
 
+let rec code expression_a = match expression_a with
+   | Plus   (g,d)->Printf.sprintf "%s\n%!" "AddiNb"
+   | Moins  (g,d)->Printf.sprintf "%s\n%!" "SubiNb"
