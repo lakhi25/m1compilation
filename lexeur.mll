@@ -9,7 +9,7 @@ rule token = parse
     c pour commentaire on a utilisé cette fichier pcq si on rentre dans le terminale comme on appuye sur entré ca nous affiche une erreur *)
     | "//"[^'\n']* { token lexbuf }  
     (* |'/''*'[^'*'|'\r''\n']'*''/'   { token lexbuf }  *)
-    (* |'/''*'[^'*'] | '\r''\n'"*/" { token lexbuf } *)
+    |'/''*'[^'*']*"*/"'\n' { token lexbuf }
     | ['\n'] { EOL } 
     | ';' {PT_VIRG}
     | ['0'-'9' ]+(['.'] ['0'-'9'])? + (['e''E']['-''+']?['0'-'9']+)? as lexem { NOMBRE (float_of_string lexem)}
