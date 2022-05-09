@@ -4,7 +4,8 @@
 /*float in js pour toutes les nombres int et meme flottante  */
 %token <float> NOMBRE
 %token <bool> BOOLEEN
-%token PLUS MOINS FOIS MODULO GPAREN DPAREN  OU ET NOT EQUAL NOTEQL GRSTNB GREQNB LOSTNB LOEQNB EOL PT_VIRG
+
+%token PLUS MOINS FOIS MODULO NAN GPAREN DPAREN  OU ET NOT EQUAL NOTEQL GRSTNB GREQNB LOSTNB LOEQNB IF ELSE WHILE  EOL PT_VIRG 
 
 
 %left OU
@@ -14,7 +15,9 @@
 %nonassoc GRSTNB GREQNB LOSTNB LOEQNB
 %left PLUS MOINS
 %left FOIS MODULO
+%left NAN
 %nonassoc UMOINS
+
 /**non terminaux*/
 %type <AST.expression_a> main expression
 %start main
@@ -45,5 +48,7 @@ expression:
     | MOINS expression %prec UMOINS {Neg $2}
     | NOMBRE {Num $1}
     | BOOLEEN { Bool $1 }
+  
+  
 
 ;

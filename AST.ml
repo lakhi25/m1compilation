@@ -38,10 +38,6 @@ and print_AST form = let open Format in function
 | Lostnb  (g,d) -> print_binaire form "Lostnb" g d
 | Noteql  (g,d) -> print_binaire form "Noteql" g d
 | Not    o    -> fprintf form "@[<2>%s@ %a@]" "Not" print_AST o
-
-
-
-
 | Neg    e    -> fprintf form "@[<2>%s@ %a@]" "Neg" print_AST e 
 | Num    n    -> fprintf form "@[<2>%s@ %f@]" "Num" n
 | Bool   b     -> fprintf form "@[<2>%s@ %b@]"  "Bool" b
