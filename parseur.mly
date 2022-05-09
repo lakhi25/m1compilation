@@ -10,7 +10,7 @@
 
 %left OU
 %left ET
-%nonassoc NOT
+%nonassoc NOT  
 %nonassoc EQUAL NOTEQL 
 %nonassoc GRSTNB GREQNB LOSTNB LOEQNB
 %left PLUS MOINS
@@ -25,7 +25,7 @@
 main:
     expression PT_VIRG EOL {$1}
 ;
-expression:
+expression: 
       expression PLUS expression {Plus ($1,$3)}
     | expression MOINS expression {Moins($1,$3)}
     | expression FOIS expression {Mult($1,$3)}
