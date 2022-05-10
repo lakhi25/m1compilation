@@ -24,7 +24,7 @@
 %%
 
 main:
-    GACOLL programme DACOLL {$2}
+    GACOLL programme DACOLL {$2} 
 
 programme :
     GACOLL programme DACOLL {$2}

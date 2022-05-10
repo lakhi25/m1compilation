@@ -16,4 +16,12 @@
             | Lexeur.Eof -> exit 0 (*impossible*)
             | Lexeur.TokenInconu (*erreur de lexing*)
             | Parsing.Parse_error -> (*erreur de parsing*)
-                Printf.printf ("Ceci n'est pas une expression arithmetique\n") 
+                Printf.printf ("Ceci n'est pas une expression arithmetique\n")
+            
+let argc = Array.length Sys.argv in 
+        let main = if (argc == 2 )then (open_in Sys.argv(1))
+                   else 
+                    (* open_out va ouvrir le fichier  *)
+        let main1 = if(argc == 2) then (open_out(Sys.argv(1)^".jsm"))
+                else 
+        
