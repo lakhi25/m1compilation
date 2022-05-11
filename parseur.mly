@@ -5,7 +5,7 @@
 %token <float> NOMBRE
 %token <bool> BOOLEEN
 %token <string> IDENT
-%token PLUS MOINS FOIS MODULO NAN  GPAREN DPAREN  ASSIGN OU ET NOT EQUAL NOTEQL GRSTNB GREQNB LOSTNB LOEQNB IF ELSE WHILE FUNCT EOL PT_VIRG 
+%token PLUS MOINS FOIS MODULO NAN  GPAREN DPAREN  ASSIGN OU LOOP ET NOT EQUAL NOTEQL GRSTNB GREQNB LOSTNB LOEQNB IF ELSE WHILE FOR DO FUNCT GACOLL DACOLL EOL PT_VIRG 
 
 
 %left OU
@@ -19,7 +19,7 @@
 %nonassoc UMOINS
 
 /**non terminaux*/
-%type <AST.expression_a> main expression
+%type <AST.expression_a> main programme commande expression
 %start main
 %%
 
@@ -29,12 +29,16 @@ main:
 programme :
     GACOLL programme DACOLL {$2}
     | commande PT_VIRG EOL {$1}
-    | ;
+    // | PT_VIRG
 
-commande :   
-    expression PT_VIRG EOL {$1}
-    | ;
-    // | GACOLL programme DACOLL {$2}
+commande :
+    expression PT_VIRG {$1}
+    |  GACOLL programme DACOLL {$2}
+
+// commande :   
+//      expression PT_VIRG EOL {$1}
+//     |;
+//     | GACOLL programme DACOLL {$2}
     // | IF GPAREN expression DPAREN commande ELSE commande { If ($3,$5,$7)}
     // | DO commande WHILE GPAREN expression DPAREN {do($2) while($5)}//pas sur
     // | WHILE GPAREN expression DPAREN LOOP commande {while ($3) loop($6)}//pas sur

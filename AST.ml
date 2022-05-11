@@ -12,6 +12,7 @@ type expression_a =
 | Loeqnb of expression_a * expression_a
 | Lostnb of expression_a * expression_a
 | Noteql of expression_a * expression_a
+(* | If of  *)
 | Not    of expression_a 
 | Neg   of expression_a
 | Num   of float

@@ -39,10 +39,12 @@ rule token = parse
     | "Loop" { LOOP }
     | "While"{ WHILE }
     | "For" { FOR}
-    | "Do"   { Do }
+    | "Do"   { DO }
     | "Funct" { FUNCT }
     | "="    { ASSIGN }
     | '('    { GPAREN }
     | ')'    { DPAREN }
+    | '{'    { GACOLL }
+    | '}'    { DACOLL }
     | eof    { raise Eof }
     | _      { raise TokenInconu }
