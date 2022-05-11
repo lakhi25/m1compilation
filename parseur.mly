@@ -34,7 +34,7 @@ programme :
 commande :   
     expression PT_VIRG EOL {$1}
     | ;
-    | GACOLL programme DACOLL {$2}
+    // | GACOLL programme DACOLL {$2}
     // | IF GPAREN expression DPAREN commande ELSE commande { If ($3,$5,$7)}
     // | DO commande WHILE GPAREN expression DPAREN {do($2) while($5)}//pas sur
     // | WHILE GPAREN expression DPAREN LOOP commande {while ($3) loop($6)}//pas sur
