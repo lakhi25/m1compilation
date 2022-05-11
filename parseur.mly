@@ -4,7 +4,7 @@
 /*float in js pour toutes les nombres int et meme flottante  */
 %token <float> NOMBRE
 %token <bool> BOOLEEN
-
+%token <string> IDENT
 %token PLUS MOINS FOIS MODULO NAN GPAREN DPAREN  OU ET NOT EQUAL NOTEQL GRSTNB GREQNB LOSTNB LOEQNB IF ELSE WHILE  EOL PT_VIRG 
 
 

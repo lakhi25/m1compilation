@@ -10,11 +10,12 @@ rule token = parse
     (*Les commentaires pas pris en compte par le parseur 
     c pour commentaire on a utilisé cette fichier pcq si on rentre dans le terminale comme on appuye sur entré ca nous affiche une erreur *)
     | "//"[^'\n']* { token lexbuf }  
+    | "//" (['a'-'z']'\n')*{ token lexbuf }  
     (* |'/''*'[^'*'|'\r''\n']'*''/'   { token lexbuf }  *)
     |'/''*'[^'*']*"*/"'\n' { token lexbuf }
     | ['\n'] { EOL } 
     | ';' {PT_VIRG}
-    (* |['a'-'z' 'A'-'Z'] (['a'-'z' 'A'-'Z'] | ['0'-'9'] | "_")*  as lexem { IDENT(lexem) }  *)
+    |['a'-'z' 'A'-'Z'] (['a'-'z' 'A'-'Z'] | ['0'-'9'] | "_")*  as lexem { IDENT(lexem) } 
     | ['0'-'9' ]+(['.'] ['0'-'9'])? + (['e''E']['-''+']?['0'-'9']+)? as lexem { NOMBRE (float_of_string lexem)}
     | "True"   { BOOLEEN(true) }
     | "False"   { BOOLEEN(false) }
